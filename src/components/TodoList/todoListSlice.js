@@ -75,7 +75,12 @@ export const todoListSlice = createSlice({
                 // console.log("[fetctCompletedTodos]", action.payload);
             })
             .addCase(fetctClosedTodos.fulfilled, (state, action) => {
-                console.log('123123');
+                console.log(action.payload);
+                state.todoList.map((todo) => {
+                    if(todo.id === action.payload.id){
+                        state.todoList.slice(todo.id);
+                    }
+                });
                 // Add user to the state array
                 // console.log("fetctCompletedTodos", action.payload);
                 // state.todoList.map((todo) => {
@@ -151,12 +156,12 @@ export const fetctClosedTodos = createAsyncThunk(
     async (id) => {
         // console.log('[id]', id);
         //   const response = await userAPI.fetchById(userId)
-        const res = await fetch("/api/deleteTodos", {
-            method: "POST",
+        const res = await fetch(`/api/deleteTodos`, {
+            method: "DELETE",
             // body: id,
             body: JSON.stringify(id),
         });
-        // console.log("[fetchNewTodos]", res.json());
+        console.log("[fetchNewTodos]", res.json());
         return res.json();
     }
 );

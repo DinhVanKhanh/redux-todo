@@ -25,11 +25,12 @@ export const setupServer = () => {
 
     this.delete('/api/deleteTodos', (schema, request) => {
         let id = JSON.parse(request.requestBody);
+        console.log('id',id);
         let currentTodo = schema.todos.find(id);
-        // return currentTodo.update(schema.todos.completed = !schema.todos.completed);
+        console.log('ddd',currentTodo);
 
-        return currentTodo.destroy();
-        // return currentTodo.destroy();
+        return schema.todos.find(id).destroy() ?? "error";
+        // return schema.todos.find(id);
 
     });
   }
