@@ -24,7 +24,7 @@ export default function Todo({ name, priority, id, completed }) {
     dispatch(fetctCompletedTodos(id));
   };
 
-  const closeTodo = (id) => {
+  const closeTodo = () => {
     dispatch(fetctClosedTodos(id));
   };
 
